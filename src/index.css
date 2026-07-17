@@ -215,7 +215,7 @@ body {
 /* ───────────────────── Controls Bar ───────────────────── */
 .controls {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
@@ -309,30 +309,45 @@ body {
   color: var(--color-pop);
 }
 
-/* Decade select */
-.decade-select {
-  appearance: none;
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
+/* ───────────────────── Decade Pill Buttons ───────────────────── */
+.decade-pills {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.decade-pill {
+  padding: 0.4rem 0.85rem;
   border: 1px solid var(--border-card);
-  border-radius: var(--radius-sm);
-  padding: 0.5rem 2.2rem 0.5rem 0.9rem;
-  color: var(--text-primary);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
   font-family: "Inter", sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a0a0b8' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6.5 6.5 6.5-6.5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
+  white-space: nowrap;
 }
 
-.decade-select:hover,
-.decade-select:focus {
+.decade-pill:hover {
+  color: var(--text-primary);
   border-color: var(--accent);
-  outline: none;
-  box-shadow: 0 0 0 3px var(--accent-glow);
+  background: rgba(108, 99, 255, 0.08);
+}
+
+.decade-pill--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 12px var(--accent-glow);
+}
+
+.decade-pill--active:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }
 
 /* ───────────────────── Chart Grid ───────────────────── */
@@ -340,6 +355,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+  align-items: start;
 }
 
 .chart-card {
@@ -357,6 +373,15 @@ body {
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.45);
 }
 
+/* ── Chart Card Header (title + controls row) ── */
+.chart-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
 .chart-card__title {
   font-size: 1rem;
   font-weight: 700;
@@ -371,6 +396,87 @@ body {
   line-height: 1.6;
   margin-bottom: 1.15rem;
   max-width: 56ch;
+}
+
+/* ── Inline Chart Controls (sort, view mode) ── */
+.chart-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.chart-controls__label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-right: 0.15rem;
+}
+
+.chart-control-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.chart-control-btn__icon {
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.chart-control-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+  background: rgba(108, 99, 255, 0.08);
+}
+
+.chart-control-btn--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+.chart-control-btn--active:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ───────────────────── Empty State ───────────────────── */
+.chart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 3rem 1rem;
+  min-height: 200px;
+}
+
+.chart-empty__icon {
+  font-size: 2.5rem;
+  opacity: 0.4;
+}
+
+.chart-empty__text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
 /* ───────────────────── Bar Chart Legend ───────────────────── */
@@ -523,6 +629,15 @@ body {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .chart-card__header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .chart-controls {
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 600px) {
@@ -559,9 +674,23 @@ body {
     font-size: 0.72rem;
   }
 
+  .decade-pills {
+    gap: 0.25rem;
+  }
+
+  .decade-pill {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.7rem;
+  }
+
   .bar-chart-legend {
     flex-wrap: wrap;
     gap: 0.75rem;
+  }
+
+  .chart-control-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
   }
 }
 

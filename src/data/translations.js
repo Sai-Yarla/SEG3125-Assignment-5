@@ -20,7 +20,7 @@ const translations = {
     chart1Desc:
       "Each line represents a genre's estimated share of the Billboard Hot 100 by decade. Use the genre filter buttons above to isolate specific trends and compare how genres rose or declined over time.",
     chart2Desc:
-      "Each bar shows a chart-topping song and how many weeks it held the #1 position. Colors indicate genre. Use the decade selector and genre filters to narrow the view.",
+      "Each bar shows a chart-topping song and how many weeks it held the #1 position. Colors indicate genre. Sort and filter to explore the data.",
 
     // Axis Labels
     axisDecade: "Decade",
@@ -37,11 +37,24 @@ const translations = {
     },
 
     // Filters
-    filterAllDecades: "All Decades",
+    filterAllDecades: "All",
     filterDecadeLabel: "Decade",
     filterGenreLabel: "Filter by Genre",
     selectAll: "Select All",
     clearSelection: "Clear",
+
+    // Sort options (Chart 2)
+    sortByWeeks: "Most Weeks",
+    sortByYear: "By Year",
+    sortByName: "A → Z",
+    sortLabel: "Sort",
+
+    // Chart 1 view toggle
+    viewLine: "Line",
+    viewArea: "Area",
+
+    // Empty state
+    noDataMessage: "No songs match the current filters.",
 
     // Tooltips
     tooltipArtist: "Artist",
@@ -84,9 +97,9 @@ const translations = {
 
     // Chart Descriptions (3Cs — Context)
     chart1Desc:
-      "Chaque ligne représente la part estimée d'un genre dans le Billboard Hot 100 par décennie. Utilisez les boutons de filtre de genre ci-dessus pour isoler des tendances spécifiques et comparer comment les genres ont évolué au fil du temps.",
+      "Chaque ligne représente la part estimée d'un genre dans le Billboard Hot 100 par décennie. Utilisez les boutons de filtre de genre ci-dessus pour isoler des tendances spécifiques.",
     chart2Desc:
-      "Chaque barre montre une chanson en tête du classement et le nombre de semaines qu'elle a occupé la position #1. Les couleurs indiquent le genre. Utilisez le sélecteur de décennie et les filtres de genre pour affiner la vue.",
+      "Chaque barre montre une chanson en tête du classement et le nombre de semaines au #1. Les couleurs indiquent le genre. Triez et filtrez pour explorer les données.",
 
     // Axis Labels
     axisDecade: "Décennie",
@@ -103,11 +116,24 @@ const translations = {
     },
 
     // Filters
-    filterAllDecades: "Toutes les Décennies",
+    filterAllDecades: "Toutes",
     filterDecadeLabel: "Décennie",
     filterGenreLabel: "Filtrer par Genre",
     selectAll: "Tout Sélectionner",
     clearSelection: "Effacer",
+
+    // Sort options (Chart 2)
+    sortByWeeks: "Plus de Semaines",
+    sortByYear: "Par Année",
+    sortByName: "A → Z",
+    sortLabel: "Trier",
+
+    // Chart 1 view toggle
+    viewLine: "Ligne",
+    viewArea: "Aire",
+
+    // Empty state
+    noDataMessage: "Aucune chanson ne correspond aux filtres actuels.",
 
     // Tooltips
     tooltipArtist: "Artiste",

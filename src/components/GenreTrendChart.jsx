@@ -1,6 +1,9 @@
+import { useState } from "react";
 import {
   LineChart,
+  AreaChart,
   Line,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -68,18 +71,43 @@ function renderLegend(props, t) {
 
 /* ── Main Chart Component ── */
 export default function GenreTrendChart({ t, activeGenres }) {
+  const [viewMode, setViewMode] = useState("line");
+
   // Transform data for Recharts: each decade becomes a row
   const chartData = musicData.map((d) => ({
     decade: d.decade,
     ...d.genreShares,
   }));
 
+  const ChartComponent = viewMode === "area" ? AreaChart : LineChart;
+  const activeKeys = GENRE_KEYS.filter((g) => activeGenres.has(g));
+
   return (
     <div className="chart-card">
-      <h2 className="chart-card__title">{t.chart1Title}</h2>
-      <p className="chart-card__desc">{t.chart1Desc}</p>
+      <div className="chart-card__header">
+        <div>
+          <h2 className="chart-card__title">{t.chart1Title}</h2>
+          <p className="chart-card__desc">{t.chart1Desc}</p>
+        </div>
+        <div className="chart-controls">
+          <button
+            className={`chart-control-btn ${viewMode === "line" ? "chart-control-btn--active" : ""}`}
+            onClick={() => setViewMode("line")}
+            aria-pressed={viewMode === "line"}
+          >
+            📈 {t.viewLine}
+          </button>
+          <button
+            className={`chart-control-btn ${viewMode === "area" ? "chart-control-btn--active" : ""}`}
+            onClick={() => setViewMode("area")}
+            aria-pressed={viewMode === "area"}
+          >
+            📊 {t.viewArea}
+          </button>
+        </div>
+      </div>
       <ResponsiveContainer width="100%" height={340}>
-        <LineChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
+        <ChartComponent data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="4 4" vertical={false} />
           <XAxis
             dataKey="decade"
@@ -105,19 +133,34 @@ export default function GenreTrendChart({ t, activeGenres }) {
           <Tooltip content={<GenreTooltip t={t} />} cursor={{ stroke: "rgba(255,255,255,0.08)" }} />
           <Legend content={(props) => renderLegend(props, t)} />
 
-          {GENRE_KEYS.filter((g) => activeGenres.has(g)).map((genre) => (
-            <Line
-              key={genre}
-              type="monotone"
-              dataKey={genre}
-              stroke={GENRE_COLORS[genre]}
-              strokeWidth={2.5}
-              dot={{ r: 4, strokeWidth: 2, fill: "#161625" }}
-              activeDot={{ r: 6, strokeWidth: 0, fill: GENRE_COLORS[genre] }}
-              animationDuration={800}
-            />
-          ))}
-        </LineChart>
+          {activeKeys.map((genre) =>
+            viewMode === "area" ? (
+              <Area
+                key={genre}
+                type="monotone"
+                dataKey={genre}
+                stroke={GENRE_COLORS[genre]}
+                fill={GENRE_COLORS[genre]}
+                fillOpacity={0.15}
+                strokeWidth={2}
+                dot={{ r: 3, strokeWidth: 2, fill: "#161625" }}
+                activeDot={{ r: 5, strokeWidth: 0, fill: GENRE_COLORS[genre] }}
+                animationDuration={800}
+              />
+            ) : (
+              <Line
+                key={genre}
+                type="monotone"
+                dataKey={genre}
+                stroke={GENRE_COLORS[genre]}
+                strokeWidth={2.5}
+                dot={{ r: 4, strokeWidth: 2, fill: "#161625" }}
+                activeDot={{ r: 6, strokeWidth: 0, fill: GENRE_COLORS[genre] }}
+                animationDuration={800}
+              />
+            )
+          )}
+        </ChartComponent>
       </ResponsiveContainer>
     </div>
   );
