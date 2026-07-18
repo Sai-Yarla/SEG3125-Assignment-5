@@ -225,66 +225,68 @@ export default function TopSongsChart({ t, activeGenres, selectedDecade }) {
           <p className="chart-empty__text">{t.noDataMessage}</p>
         </div>
       ) : (
-        <ResponsiveContainer width="100%" height={chartHeight}>
-          <BarChart
-            data={songs}
-            layout="vertical"
-            margin={{ top: 5, right: 55, left: 10, bottom: 5 }}
-          >
-            <defs>
-              {GENRE_KEYS.map((genre) => (
-                <linearGradient key={genre} id={`grad-${genre}`} x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor={GENRE_COLORS[genre]} stopOpacity={0.6} />
-                  <stop offset="100%" stopColor={GENRE_COLORS[genre]} stopOpacity={1} />
-                </linearGradient>
-              ))}
-            </defs>
-            <CartesianGrid strokeDasharray="4 4" horizontal={false} />
-            <XAxis
-              type="number"
-              tick={{ fontSize: 11 }}
-              domain={[0, "dataMax + 3"]}
-              label={{
-                value: axisLabel,
-                position: "insideBottom",
-                offset: -2,
-                style: { fill: "#6b6b82", fontSize: 12, fontFamily: "Inter" },
-              }}
-            />
-            <YAxis
-              type="category"
-              dataKey="title"
-              tick={<SongYTick songs={songs} />}
-              width={170}
-              interval={0}
-            />
-            <Tooltip
-              content={<SongTooltip t={t} />}
-              cursor={{ fill: "rgba(255,255,255,0.03)" }}
-            />
-            <Bar
-              dataKey={dataKey}
-              radius={[0, 6, 6, 0]}
-              animationDuration={600}
-              maxBarSize={26}
+        <div className="chart-scroll-container">
+          <ResponsiveContainer width="100%" height={chartHeight}>
+            <BarChart
+              data={songs}
+              layout="vertical"
+              margin={{ top: 5, right: 55, left: 10, bottom: 5 }}
             >
-              {songs.map((song, idx) => (
-                <Cell
-                  key={`cell-${idx}`}
-                  fill={`url(#grad-${song.genre})`}
-                  fillOpacity={song[dataKey] === maxVal ? 1 : 0.75}
-                  stroke={song[dataKey] === maxVal ? GENRE_COLORS[song.genre] : "none"}
-                  strokeWidth={song[dataKey] === maxVal ? 2 : 0}
-                />
-              ))}
-              <LabelList
-                content={(props) => (
-                  <BarValueLabel {...props} songs={songs} sortKey={sortKey} />
-                )}
+              <defs>
+                {GENRE_KEYS.map((genre) => (
+                  <linearGradient key={genre} id={`grad-${genre}`} x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor={GENRE_COLORS[genre]} stopOpacity={0.6} />
+                    <stop offset="100%" stopColor={GENRE_COLORS[genre]} stopOpacity={1} />
+                  </linearGradient>
+                ))}
+              </defs>
+              <CartesianGrid strokeDasharray="4 4" horizontal={false} />
+              <XAxis
+                type="number"
+                tick={{ fontSize: 11 }}
+                domain={[0, "dataMax + 3"]}
+                label={{
+                  value: axisLabel,
+                  position: "insideBottom",
+                  offset: -2,
+                  style: { fill: "#6b6b82", fontSize: 12, fontFamily: "Inter" },
+                }}
               />
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+              <YAxis
+                type="category"
+                dataKey="title"
+                tick={<SongYTick songs={songs} />}
+                width={170}
+                interval={0}
+              />
+              <Tooltip
+                content={<SongTooltip t={t} />}
+                cursor={{ fill: "rgba(255,255,255,0.03)" }}
+              />
+              <Bar
+                dataKey={dataKey}
+                radius={[0, 6, 6, 0]}
+                animationDuration={600}
+                maxBarSize={26}
+              >
+                {songs.map((song, idx) => (
+                  <Cell
+                    key={`cell-${idx}`}
+                    fill={`url(#grad-${song.genre})`}
+                    fillOpacity={song[dataKey] === maxVal ? 1 : 0.75}
+                    stroke={song[dataKey] === maxVal ? GENRE_COLORS[song.genre] : "none"}
+                    strokeWidth={song[dataKey] === maxVal ? 2 : 0}
+                  />
+                ))}
+                <LabelList
+                  content={(props) => (
+                    <BarValueLabel {...props} songs={songs} sortKey={sortKey} />
+                  )}
+                />
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       )}
 
       <BarChartLegend t={t} activeGenres={activeGenres} />

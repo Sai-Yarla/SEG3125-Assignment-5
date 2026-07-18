@@ -661,6 +661,14 @@ a:focus-visible {
   font-weight: 500;
 }
 
+/* ───────────────────── Scrollable Chart Container ───────────────────── */
+.chart-scroll-container {
+  max-height: 420px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+}
+
 /* ───────────────────── Unified Chart Legend ───────────────────── */
 .chart-legend {
   display: flex;
