@@ -3,6 +3,8 @@ import translations from "./data/translations";
 import { GENRE_KEYS } from "./data/musicData";
 import Header from "./components/Header";
 import StatsCards from "./components/StatsCards";
+import KeyInsights from "./components/KeyInsights";
+import FilterSummary from "./components/FilterSummary";
 import GenreFilter from "./components/GenreFilter";
 import DecadeSelector from "./components/DecadeSelector";
 import GenreTrendChart from "./components/GenreTrendChart";
@@ -33,7 +35,6 @@ export default function App() {
     setActiveGenres((prev) => {
       const next = new Set(prev);
       if (next.has(genre)) {
-        // Don't allow deselecting all genres
         if (next.size > 1) next.delete(genre);
       } else {
         next.add(genre);
@@ -47,7 +48,6 @@ export default function App() {
   }, []);
 
   const clearSelection = useCallback(() => {
-    // Keep just the first genre to avoid empty state
     setActiveGenres(new Set([GENRE_KEYS[0]]));
   }, []);
 
@@ -55,14 +55,21 @@ export default function App() {
     setSelectedDecade(decade);
   }, []);
 
+  const resetAll = useCallback(() => {
+    setActiveGenres(new Set(GENRE_KEYS));
+    setSelectedDecade("All");
+  }, []);
+
   // ── Render ──
   return (
-    <div className="dashboard">
+    <div className="dashboard" id="main">
       <Header t={t} language={language} onToggleLanguage={toggleLanguage} />
 
       <p className="intro">{t.introText}</p>
 
       <StatsCards t={t} activeGenres={activeGenres} selectedDecade={selectedDecade} />
+
+      <KeyInsights t={t} activeGenres={activeGenres} selectedDecade={selectedDecade} />
 
       <div className="controls">
         <GenreFilter
@@ -74,6 +81,13 @@ export default function App() {
         />
         <DecadeSelector t={t} selectedDecade={selectedDecade} onSelectDecade={selectDecade} />
       </div>
+
+      <FilterSummary
+        t={t}
+        activeGenres={activeGenres}
+        selectedDecade={selectedDecade}
+        onReset={resetAll}
+      />
 
       <div className="charts-grid">
         <GenreTrendChart t={t} activeGenres={activeGenres} />

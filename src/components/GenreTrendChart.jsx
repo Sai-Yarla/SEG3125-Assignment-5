@@ -10,6 +10,8 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
+  ReferenceLine,
+  Label,
 } from "recharts";
 import musicData, { GENRE_KEYS, GENRE_COLORS } from "../data/musicData";
 
@@ -40,27 +42,12 @@ function GenreTooltip({ active, payload, label, t }) {
 function renderLegend(props, t) {
   const { payload } = props;
   return (
-    <div style={{ display: "flex", justifyContent: "center", gap: "1.25rem", marginTop: "0.5rem" }}>
+    <div className="chart-legend">
       {payload.map((entry) => (
-        <span
-          key={entry.dataKey}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.35rem",
-            fontSize: "0.75rem",
-            color: "#a0a0b8",
-            fontWeight: 500,
-          }}
-        >
+        <span key={entry.dataKey} className="chart-legend__item">
           <span
-            style={{
-              width: 10,
-              height: 10,
-              borderRadius: "50%",
-              backgroundColor: entry.color,
-              display: "inline-block",
-            }}
+            className="chart-legend__dot"
+            style={{ backgroundColor: entry.color }}
           />
           {t.genreLabels[entry.dataKey]}
         </span>
@@ -69,18 +56,47 @@ function renderLegend(props, t) {
   );
 }
 
+/* ── Custom dot label for "Show Values" ── */
+function ValueDot(props) {
+  const { cx, cy, value } = props;
+  if (value === undefined || value === null) return null;
+  return (
+    <text
+      x={cx}
+      y={cy - 10}
+      textAnchor="middle"
+      fill="#a0a0b8"
+      fontSize={9}
+      fontFamily="Inter"
+      fontWeight={600}
+    >
+      {value}%
+    </text>
+  );
+}
+
+/* ── Annotation data ── */
+const ANNOTATIONS = [
+  { decade: "1990s", labelKey: "annotationHipHop" },
+  { decade: "2010s", labelKey: "annotationStreaming" },
+];
+
 /* ── Main Chart Component ── */
 export default function GenreTrendChart({ t, activeGenres }) {
   const [viewMode, setViewMode] = useState("line");
+  const [showValues, setShowValues] = useState(false);
 
-  // Transform data for Recharts: each decade becomes a row
   const chartData = musicData.map((d) => ({
     decade: d.decade,
     ...d.genreShares,
   }));
 
-  const ChartComponent = viewMode === "area" ? AreaChart : LineChart;
   const activeKeys = GENRE_KEYS.filter((g) => activeGenres.has(g));
+  const isStacked = viewMode === "stacked";
+  const isArea = viewMode === "area" || isStacked;
+  const ChartComponent = isArea ? AreaChart : LineChart;
+
+  const yDomain = isStacked ? [0, 100] : [0, "dataMax + 5"];
 
   return (
     <div className="chart-card">
@@ -90,24 +106,28 @@ export default function GenreTrendChart({ t, activeGenres }) {
           <p className="chart-card__desc">{t.chart1Desc}</p>
         </div>
         <div className="chart-controls">
+          {["line", "area", "stacked"].map((mode) => (
+            <button
+              key={mode}
+              className={`chart-control-btn ${viewMode === mode ? "chart-control-btn--active" : ""}`}
+              onClick={() => setViewMode(mode)}
+              aria-pressed={viewMode === mode}
+            >
+              {t[mode === "line" ? "viewLine" : mode === "area" ? "viewArea" : "viewStacked"]}
+            </button>
+          ))}
+          <span className="chart-controls__divider" />
           <button
-            className={`chart-control-btn ${viewMode === "line" ? "chart-control-btn--active" : ""}`}
-            onClick={() => setViewMode("line")}
-            aria-pressed={viewMode === "line"}
+            className={`chart-control-btn ${showValues ? "chart-control-btn--active" : ""}`}
+            onClick={() => setShowValues((v) => !v)}
+            aria-pressed={showValues}
           >
-            📈 {t.viewLine}
-          </button>
-          <button
-            className={`chart-control-btn ${viewMode === "area" ? "chart-control-btn--active" : ""}`}
-            onClick={() => setViewMode("area")}
-            aria-pressed={viewMode === "area"}
-          >
-            📊 {t.viewArea}
+            {t.showValues}
           </button>
         </div>
       </div>
-      <ResponsiveContainer width="100%" height={340}>
-        <ChartComponent data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
+      <ResponsiveContainer width="100%" height={360}>
+        <ChartComponent data={chartData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="4 4" vertical={false} />
           <XAxis
             dataKey="decade"
@@ -121,7 +141,7 @@ export default function GenreTrendChart({ t, activeGenres }) {
           />
           <YAxis
             tick={{ fontSize: 12 }}
-            domain={[0, 50]}
+            domain={yDomain}
             label={{
               value: t.axisGenreShare,
               angle: -90,
@@ -133,19 +153,40 @@ export default function GenreTrendChart({ t, activeGenres }) {
           <Tooltip content={<GenreTooltip t={t} />} cursor={{ stroke: "rgba(255,255,255,0.08)" }} />
           <Legend content={(props) => renderLegend(props, t)} />
 
+          {/* Reference line annotations */}
+          {ANNOTATIONS.map((ann) => (
+            <ReferenceLine
+              key={ann.decade}
+              x={ann.decade}
+              stroke="rgba(108,99,255,0.3)"
+              strokeDasharray="6 3"
+            >
+              <Label
+                value={t[ann.labelKey]}
+                position="top"
+                fill="#6c63ff"
+                fontSize={10}
+                fontFamily="Inter"
+                fontWeight={600}
+                offset={8}
+              />
+            </ReferenceLine>
+          ))}
+
           {activeKeys.map((genre) =>
-            viewMode === "area" ? (
+            isArea ? (
               <Area
                 key={genre}
                 type="monotone"
                 dataKey={genre}
                 stroke={GENRE_COLORS[genre]}
                 fill={GENRE_COLORS[genre]}
-                fillOpacity={0.15}
-                strokeWidth={2}
-                dot={{ r: 3, strokeWidth: 2, fill: "#161625" }}
+                fillOpacity={isStacked ? 0.7 : 0.15}
+                strokeWidth={isStacked ? 1 : 2}
+                stackId={isStacked ? "genres" : undefined}
+                dot={showValues ? <ValueDot /> : { r: 3, strokeWidth: 2, fill: "#161625" }}
                 activeDot={{ r: 5, strokeWidth: 0, fill: GENRE_COLORS[genre] }}
-                animationDuration={800}
+                animationDuration={600}
               />
             ) : (
               <Line
@@ -154,9 +195,9 @@ export default function GenreTrendChart({ t, activeGenres }) {
                 dataKey={genre}
                 stroke={GENRE_COLORS[genre]}
                 strokeWidth={2.5}
-                dot={{ r: 4, strokeWidth: 2, fill: "#161625" }}
+                dot={showValues ? <ValueDot /> : { r: 4, strokeWidth: 2, fill: "#161625" }}
                 activeDot={{ r: 6, strokeWidth: 0, fill: GENRE_COLORS[genre] }}
-                animationDuration={800}
+                animationDuration={600}
               />
             )
           )}

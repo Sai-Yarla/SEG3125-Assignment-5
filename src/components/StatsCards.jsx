@@ -35,26 +35,27 @@ export default function StatsCards({ t, activeGenres, selectedDecade }) {
   );
   const avgWeeks =
     filteredSongs.length > 0
-      ? (
-          filteredSongs.reduce((sum, s) => sum + s.weeksAtNo1, 0) /
-          filteredSongs.length
-        ).toFixed(1)
-      : "0";
+      ? filteredSongs.reduce((sum, s) => sum + s.weeksAtNo1, 0) / filteredSongs.length
+      : 0;
 
   const fmt = new Intl.NumberFormat(t.locale, { maximumFractionDigits: 1 });
+
+  // Pluralization helper
+  const songsLabel = totalSongs === 1 ? (t.statSongsTrackedSingular || t.statSongsTracked) : t.statSongsTracked;
+  const decadesLabel = decadesCovered === 1 ? (t.statDecadesCoveredSingular || t.statDecadesCovered) : t.statDecadesCovered;
 
   const cards = [
     {
       id: "songs",
       value: fmt.format(totalSongs),
-      label: t.statSongsTracked,
+      label: songsLabel,
       icon: "🎵",
       accent: "var(--color-pop)",
     },
     {
       id: "decades",
       value: fmt.format(decadesCovered),
-      label: t.statDecadesCovered,
+      label: decadesLabel,
       icon: "📅",
       accent: "var(--color-rock)",
     },
@@ -67,7 +68,7 @@ export default function StatsCards({ t, activeGenres, selectedDecade }) {
     },
     {
       id: "avgweeks",
-      value: fmt.format(Number(avgWeeks)),
+      value: fmt.format(avgWeeks),
       label: t.statAvgWeeks,
       icon: "📊",
       accent: "var(--color-hiphop)",

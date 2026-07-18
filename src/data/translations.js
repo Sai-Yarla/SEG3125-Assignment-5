@@ -10,7 +10,7 @@ const translations = {
 
     // Intro
     introText:
-      "This interactive dashboard explores how mainstream music genres have shifted in cultural dominance over the past six decades. The macro-level line chart tracks genre share trends, while the micro-level bar chart highlights individual Billboard Hot 100 chart-toppers and their weeks at #1.",
+      "This interactive dashboard explores how mainstream music genres have shifted in cultural dominance over the past six decades. Use the controls below to filter, sort, and compare genre trends and chart-topping songs from the Billboard Hot 100.",
 
     // Chart Titles
     chart1Title: "Genre Share Over the Decades (%)",
@@ -18,9 +18,9 @@ const translations = {
 
     // Chart Descriptions (3Cs — Context)
     chart1Desc:
-      "Each line represents a genre's estimated share of the Billboard Hot 100 by decade. Use the genre filter buttons above to isolate specific trends and compare how genres rose or declined over time.",
+      "Each line represents a genre's estimated share of the Billboard Hot 100 by decade. Toggle between Line, Area, and Stacked views.",
     chart2Desc:
-      "Each bar shows a chart-topping song and how many weeks it held the #1 position. Colors indicate genre. Sort and filter to explore the data.",
+      "Horizontal bars show chart-topping songs ranked by weeks at #1. Sort and filter to explore the data.",
 
     // Axis Labels
     axisDecade: "Decade",
@@ -34,24 +34,39 @@ const translations = {
       Rock: "Rock",
       HipHop: "Hip-Hop",
       RB: "R&B",
+      Country: "Country",
+      Electronic: "Electronic",
     },
 
     // Filters
     filterAllDecades: "All",
     filterDecadeLabel: "Decade",
-    filterGenreLabel: "Filter by Genre",
+    filterGenreLabel: "Genres",
     selectAll: "Select All",
     clearSelection: "Clear",
 
     // Sort options (Chart 2)
-    sortByWeeks: "Most Weeks",
+    sortByWeeks: "Weeks at #1",
+    sortByChartWeeks: "Chart Weeks",
     sortByYear: "By Year",
     sortByName: "A → Z",
     sortLabel: "Sort",
 
+    // Top-N filter (Chart 2)
+    topN5: "Top 5",
+    topN10: "Top 10",
+    topNAll: "All",
+    showLabel: "Show",
+
     // Chart 1 view toggle
     viewLine: "Line",
     viewArea: "Area",
+    viewStacked: "Stacked",
+    showValues: "Values",
+
+    // Annotations (Chart 1)
+    annotationHipHop: "Rise of Hip-Hop",
+    annotationStreaming: "Streaming Era",
 
     // Empty state
     noDataMessage: "No songs match the current filters.",
@@ -61,6 +76,7 @@ const translations = {
     tooltipYear: "Year",
     tooltipGenre: "Genre",
     tooltipWeeks: "Weeks at #1",
+    tooltipChartWeeks: "Total Chart Weeks",
     tooltipShare: "Share",
 
     // Language Toggle
@@ -69,9 +85,23 @@ const translations = {
 
     // Stats Cards
     statSongsTracked: "Songs Tracked",
+    statSongsTrackedSingular: "Song Tracked",
     statDecadesCovered: "Decades Covered",
+    statDecadesCoveredSingular: "Decade Covered",
     statTopGenre: "Top Genre",
     statAvgWeeks: "Avg. Weeks at #1",
+
+    // Key Insights
+    insightLongestNo1: "{song} by {artist} held #1 for {weeks} weeks — the longest in this view.",
+    insightGenreGrowth: "{genre} grew from {from}% to {to}% between the {startDecade} and {endDecade}.",
+    insightMostPersistent: "{genre} appears in every decade, making it the most persistent genre.",
+    insightTitle: "Key Insights",
+
+    // Filter Summary
+    filterSummaryShowing: "Showing",
+    filterSummaryAllGenres: "All Genres",
+    filterSummaryAllDecades: "All Decades",
+    resetAll: "Reset All",
 
     // Footer
     footerDataSource: "Data Source: Synthetic dataset based on Billboard Hot 100 historical trends.",
@@ -89,7 +119,7 @@ const translations = {
 
     // Intro
     introText:
-      "Ce tableau de bord interactif explore comment les genres musicaux populaires ont changé de dominance culturelle au cours des six dernières décennies. Le graphique linéaire macro montre l'évolution des parts de genre, tandis que le graphique à barres micro met en évidence les chansons phares du Billboard Hot 100 et leurs semaines au numéro 1.",
+      "Ce tableau de bord interactif explore comment les genres musicaux populaires ont changé de dominance culturelle au cours des six dernières décennies. Utilisez les contrôles ci-dessous pour filtrer, trier et comparer les tendances de genre et les chansons phares du Billboard Hot 100.",
 
     // Chart Titles
     chart1Title: "Part des Genres par Décennie (%)",
@@ -97,9 +127,9 @@ const translations = {
 
     // Chart Descriptions (3Cs — Context)
     chart1Desc:
-      "Chaque ligne représente la part estimée d'un genre dans le Billboard Hot 100 par décennie. Utilisez les boutons de filtre de genre ci-dessus pour isoler des tendances spécifiques.",
+      "Chaque ligne représente la part estimée d'un genre dans le Billboard Hot 100 par décennie. Basculez entre les vues Ligne, Aire et Empilée.",
     chart2Desc:
-      "Chaque barre montre une chanson en tête du classement et le nombre de semaines au #1. Les couleurs indiquent le genre. Triez et filtrez pour explorer les données.",
+      "Les barres horizontales montrent les chansons classées par semaines au #1. Triez et filtrez pour explorer les données.",
 
     // Axis Labels
     axisDecade: "Décennie",
@@ -113,24 +143,39 @@ const translations = {
       Rock: "Rock",
       HipHop: "Hip-Hop",
       RB: "R&B",
+      Country: "Country",
+      Electronic: "Électronique",
     },
 
     // Filters
     filterAllDecades: "Toutes",
     filterDecadeLabel: "Décennie",
-    filterGenreLabel: "Filtrer par Genre",
+    filterGenreLabel: "Genres",
     selectAll: "Tout Sélectionner",
     clearSelection: "Effacer",
 
     // Sort options (Chart 2)
-    sortByWeeks: "Plus de Semaines",
+    sortByWeeks: "Semaines au #1",
+    sortByChartWeeks: "Sem. au Classement",
     sortByYear: "Par Année",
     sortByName: "A → Z",
     sortLabel: "Trier",
 
+    // Top-N filter (Chart 2)
+    topN5: "Top 5",
+    topN10: "Top 10",
+    topNAll: "Tous",
+    showLabel: "Afficher",
+
     // Chart 1 view toggle
     viewLine: "Ligne",
     viewArea: "Aire",
+    viewStacked: "Empilée",
+    showValues: "Valeurs",
+
+    // Annotations (Chart 1)
+    annotationHipHop: "Essor du Hip-Hop",
+    annotationStreaming: "Ère du Streaming",
 
     // Empty state
     noDataMessage: "Aucune chanson ne correspond aux filtres actuels.",
@@ -140,6 +185,7 @@ const translations = {
     tooltipYear: "Année",
     tooltipGenre: "Genre",
     tooltipWeeks: "Semaines au #1",
+    tooltipChartWeeks: "Semaines au Classement",
     tooltipShare: "Part",
 
     // Language Toggle
@@ -148,9 +194,23 @@ const translations = {
 
     // Stats Cards
     statSongsTracked: "Chansons Suivies",
+    statSongsTrackedSingular: "Chanson Suivie",
     statDecadesCovered: "Décennies Couvertes",
+    statDecadesCoveredSingular: "Décennie Couverte",
     statTopGenre: "Genre Principal",
     statAvgWeeks: "Moy. Semaines au #1",
+
+    // Key Insights
+    insightLongestNo1: "{song} par {artist} est resté #1 pendant {weeks} semaines — le plus long dans cette vue.",
+    insightGenreGrowth: "{genre} est passé de {from}% à {to}% entre les {startDecade} et {endDecade}.",
+    insightMostPersistent: "{genre} apparaît dans chaque décennie, ce qui en fait le genre le plus persistant.",
+    insightTitle: "Points Clés",
+
+    // Filter Summary
+    filterSummaryShowing: "Affichage",
+    filterSummaryAllGenres: "Tous les Genres",
+    filterSummaryAllDecades: "Toutes les Décennies",
+    resetAll: "Réinitialiser",
 
     // Footer
     footerDataSource: "Source des Données : Jeu de données synthétique basé sur les tendances historiques du Billboard Hot 100.",
