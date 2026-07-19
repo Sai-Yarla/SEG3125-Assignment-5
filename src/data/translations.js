@@ -6,7 +6,7 @@ const translations = {
     // Header
     dashboardTitle: "Mainstream Music Evolution",
     dashboardSubtitle: "Billboard Hot 100 · Genre Trends · 1960s – 2020s",
-    designerCredit: "Designed by Sai Yarlagadda — 300283438",
+    designerCredit: "",
 
     // Intro
     introText:
@@ -106,7 +106,7 @@ const translations = {
     // Footer
     footerDataSource: "Data Source: Synthetic dataset based on Billboard Hot 100 historical trends.",
     footerDisclaimer: "Note: All data presented is synthetic and for educational purposes only.",
-    footerDesigner: "SEG3125 — University of Ottawa",
+    footerDesigner: "",
   },
 
   fr: {
@@ -115,7 +115,7 @@ const translations = {
     // Header
     dashboardTitle: "L'Évolution de la Musique Populaire",
     dashboardSubtitle: "Billboard Hot 100 · Tendances des Genres · 1960 – 2020",
-    designerCredit: "Conçu par Sai Yarlagadda — 300283438",
+    designerCredit: "",
 
     // Intro
     introText:
@@ -215,7 +215,7 @@ const translations = {
     // Footer
     footerDataSource: "Source des Données : Jeu de données synthétique basé sur les tendances historiques du Billboard Hot 100.",
     footerDisclaimer: "Remarque : Toutes les données présentées sont synthétiques et à des fins éducatives uniquement.",
-    footerDesigner: "SEG3125 — Université d'Ottawa",
+    footerDesigner: "",
   },
 };
 
