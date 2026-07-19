@@ -1,16 +1,47 @@
-# React + Vite
+# Music Evolution Dashboard (Bauhaus Edition)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A dynamic, interactive dashboard visualizing the evolution of music genres and top songs on the Billboard Hot 100 from the 1960s to the 2020s. 
 
-Currently, two official plugins are available:
+This project was built for **SEG3125 - Assignment 5** and features a strict **Bauhaus Design System** utilizing pure constructivist principles (primary colors, hard shadows, thick borders, and geometric shapes).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Decade Selector**: Filter data by specific decades or view all historical data.
+- **Genre Filtering**: Toggle specific genres on and off to isolate trends.
+- **Genre Trend Chart (Line/Area/Stacked)**: Visualize how the market share of Pop, Rock, Hip-Hop, R&B, Country, and Electronic music shifted over time.
+- **Top Songs Chart**: A dynamic bar chart ranking the top songs based on weeks at #1, total chart weeks, or chronologically.
+- **Key Statistics**: High-level insights displaying total songs tracked, decades covered, top genres, and average chart performance.
+- **Bilingual Support**: Toggle between English and French content.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the Oxlint configuration
+- **React 19**
+- **Vite**
+- **Recharts** (Data Visualization)
+- **Vanilla CSS** (Bauhaus Design Implementation)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Getting Started
+
+### Prerequisites
+- Node.js installed on your machine.
+
+### Installation
+1. Clone the repository.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Deployment
+
+This project is configured to deploy to GitHub Pages. To deploy the latest build, run:
+```bash
+npm run deploy
+```
+
+## Design System Note
+The interface is intentionally designed as a geometric composition evoking 1920s Bauhaus posters. The color palette is strictly limited to `#D02020` (Red), `#1040C0` (Blue), `#F0C020` (Yellow), along with stark black, white, and utility greys.
