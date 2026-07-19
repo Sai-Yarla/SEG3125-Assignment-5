@@ -262,7 +262,6 @@ export default function TopSongsChart({ t, activeGenres, selectedDecade }) {
               <Tooltip
                 content={<SongTooltip t={t} />}
                 cursor={{ fill: "rgba(0,0,0,0.03)" }}
-                allowEscapeViewBox={{ x: true, y: true }}
               />
               <Bar
                 dataKey={dataKey}
