@@ -230,7 +230,7 @@ export default function TopSongsChart({ t, activeGenres, selectedDecade }) {
             <BarChart
               data={songs}
               layout="vertical"
-              margin={{ top: 5, right: 90, left: 10, bottom: 5 }}
+              margin={{ top: 5, right: 55, left: 10, bottom: 5 }}
             >
               <defs>
                 {GENRE_KEYS.map((genre) => (
@@ -262,6 +262,7 @@ export default function TopSongsChart({ t, activeGenres, selectedDecade }) {
               <Tooltip
                 content={<SongTooltip t={t} />}
                 cursor={{ fill: "rgba(0,0,0,0.03)" }}
+                allowEscapeViewBox={{ x: true, y: true }}
               />
               <Bar
                 dataKey={dataKey}

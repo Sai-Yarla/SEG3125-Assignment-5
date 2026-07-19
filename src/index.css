@@ -755,7 +755,7 @@ body::after {
   max-height: 420px;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-right: 24px;
+  padding-right: 8px;
 }
 
 /* ───────────────────── Unified Chart Legend ───────────────────── */
