@@ -28,16 +28,24 @@ export default function GenreFilter({ t, activeGenres, onToggleGenre, onSelectAl
         );
       })}
       <div className="controls__quick-actions">
-        {!allSelected && (
-          <button className="quick-action-btn" onClick={onSelectAll} aria-label={t.selectAll}>
-            {t.selectAll}
-          </button>
-        )}
-        {activeGenres.size > 1 && (
-          <button className="quick-action-btn quick-action-btn--clear" onClick={onClearSelection} aria-label={t.clearSelection}>
-            {t.clearSelection}
-          </button>
-        )}
+        <button
+          className="quick-action-btn"
+          onClick={onSelectAll}
+          aria-label={t.selectAll}
+          style={{ visibility: allSelected ? "hidden" : "visible" }}
+          aria-hidden={allSelected}
+        >
+          {t.selectAll}
+        </button>
+        <button
+          className="quick-action-btn quick-action-btn--clear"
+          onClick={onClearSelection}
+          aria-label={t.clearSelection}
+          style={{ visibility: activeGenres.size > 1 ? "visible" : "hidden" }}
+          aria-hidden={activeGenres.size <= 1}
+        >
+          {t.clearSelection}
+        </button>
       </div>
     </div>
   );
