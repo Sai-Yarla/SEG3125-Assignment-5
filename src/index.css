@@ -340,12 +340,17 @@ a:focus-visible {
 
 /* ───────────────────── Controls Bar ───────────────────── */
 .controls {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr auto;
   gap: 1rem;
   margin-bottom: 0.75rem;
+  align-items: start;
+}
+
+@media (max-width: 1150px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
 }
 
 .controls__group {
