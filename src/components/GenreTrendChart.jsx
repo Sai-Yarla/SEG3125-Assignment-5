@@ -150,7 +150,7 @@ export default function GenreTrendChart({ t, activeGenres }) {
               style: { fill: "#121212", fontSize: 12, fontFamily: "Outfit, sans-serif", fontWeight: 700 },
             }}
           />
-          <Tooltip content={<GenreTooltip t={t} />} cursor={{ stroke: "rgba(0,0,0,0.05)" }} />
+          <Tooltip content={<GenreTooltip t={t} />} cursor={{ stroke: "rgba(0,0,0,0.05)" }} allowEscapeViewBox={{ x: true, y: true }} />
           <Legend content={(props) => renderLegend(props, t)} />
 
           {/* Reference line annotations */}

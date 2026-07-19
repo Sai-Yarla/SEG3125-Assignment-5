@@ -838,6 +838,11 @@ body::after {
   vertical-align: middle;
 }
 
+/* Ensure tooltips are never hidden behind other relative elements */
+.recharts-tooltip-wrapper {
+  z-index: 9999 !important;
+}
+
 /* ───────────────────── Footer ───────────────────── */
 .footer {
   margin-top: 4rem;
