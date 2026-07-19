@@ -103,11 +103,11 @@ const musicData = [
 
 // Consistent genre color palette used across all charts and UI elements
 export const GENRE_COLORS = {
-  Pop: "#E63946",
-  Rock: "#457B9D",
-  HipHop: "#F4A261",
-  RB: "#9B5DE5",
-  Country: "#2EC4B6",
+  Pop: "#D02020",
+  Rock: "#1040C0",
+  HipHop: "#F0C020",
+  RB: "#8A2BE2",
+  Country: "#00A86B",
   Electronic: "#FF6B6B",
 };
 

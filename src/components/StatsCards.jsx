@@ -81,7 +81,7 @@ export default function StatsCards({ t, activeGenres, selectedDecade }) {
         <div key={card.id} className="stat-card">
           <span className="stat-card__icon">{card.icon}</span>
           <div className="stat-card__content">
-            <span className="stat-card__value" style={{ color: card.accent }}>
+            <span className="stat-card__value">
               {card.value}
             </span>
             <span className="stat-card__label">{card.label}</span>

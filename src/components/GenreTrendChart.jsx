@@ -65,10 +65,10 @@ function ValueDot(props) {
       x={cx}
       y={cy - 10}
       textAnchor="middle"
-      fill="#a0a0b8"
+      fill="#121212"
       fontSize={9}
-      fontFamily="Inter"
-      fontWeight={600}
+      fontFamily="Outfit, sans-serif"
+      fontWeight={900}
     >
       {value}%
     </text>
@@ -136,7 +136,7 @@ export default function GenreTrendChart({ t, activeGenres }) {
               value: t.axisDecade,
               position: "insideBottom",
               offset: -2,
-              style: { fill: "#6b6b82", fontSize: 12, fontFamily: "Inter" },
+              style: { fill: "#121212", fontSize: 12, fontFamily: "Outfit, sans-serif", fontWeight: 700 },
             }}
           />
           <YAxis
@@ -147,10 +147,10 @@ export default function GenreTrendChart({ t, activeGenres }) {
               angle: -90,
               position: "insideLeft",
               offset: 10,
-              style: { fill: "#6b6b82", fontSize: 12, fontFamily: "Inter" },
+              style: { fill: "#121212", fontSize: 12, fontFamily: "Outfit, sans-serif", fontWeight: 700 },
             }}
           />
-          <Tooltip content={<GenreTooltip t={t} />} cursor={{ stroke: "rgba(255,255,255,0.08)" }} />
+          <Tooltip content={<GenreTooltip t={t} />} cursor={{ stroke: "rgba(0,0,0,0.05)" }} />
           <Legend content={(props) => renderLegend(props, t)} />
 
           {/* Reference line annotations */}
@@ -158,16 +158,16 @@ export default function GenreTrendChart({ t, activeGenres }) {
             <ReferenceLine
               key={ann.decade}
               x={ann.decade}
-              stroke="rgba(108,99,255,0.3)"
+              stroke="rgba(18,18,18,0.3)"
               strokeDasharray="6 3"
             >
               <Label
                 value={t[ann.labelKey]}
                 position="top"
-                fill="#6c63ff"
+                fill="#121212"
                 fontSize={10}
-                fontFamily="Inter"
-                fontWeight={600}
+                fontFamily="Outfit, sans-serif"
+                fontWeight={900}
                 offset={8}
               />
             </ReferenceLine>
@@ -184,7 +184,7 @@ export default function GenreTrendChart({ t, activeGenres }) {
                 fillOpacity={isStacked ? 0.7 : 0.15}
                 strokeWidth={isStacked ? 1 : 2}
                 stackId={isStacked ? "genres" : undefined}
-                dot={showValues ? <ValueDot /> : { r: 3, strokeWidth: 2, fill: "#161625" }}
+                dot={showValues ? <ValueDot /> : { r: 3, strokeWidth: 2, fill: "#FFFFFF" }}
                 activeDot={{ r: 5, strokeWidth: 0, fill: GENRE_COLORS[genre] }}
                 animationDuration={600}
               />
@@ -195,7 +195,7 @@ export default function GenreTrendChart({ t, activeGenres }) {
                 dataKey={genre}
                 stroke={GENRE_COLORS[genre]}
                 strokeWidth={2.5}
-                dot={showValues ? <ValueDot /> : { r: 4, strokeWidth: 2, fill: "#161625" }}
+                dot={showValues ? <ValueDot /> : { r: 4, strokeWidth: 2, fill: "#FFFFFF" }}
                 activeDot={{ r: 6, strokeWidth: 0, fill: GENRE_COLORS[genre] }}
                 animationDuration={600}
               />

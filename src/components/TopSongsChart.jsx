@@ -89,10 +89,10 @@ function SongYTick({ x, y, payload, songs }) {
 
   return (
     <g>
-      <text x={x} y={y} dy={-3} textAnchor="end" fill="#a0a0b8" fontSize={10} fontFamily="Inter" fontWeight={600}>
+      <text x={x} y={y} dy={-3} textAnchor="end" fill="#121212" fontSize={11} fontFamily="Outfit, sans-serif" fontWeight={900}>
         {title}
       </text>
-      <text x={x} y={y} dy={10} textAnchor="end" fill="#6b6b82" fontSize={9} fontFamily="Inter" fontWeight={400}>
+      <text x={x} y={y} dy={10} textAnchor="end" fill="#555555" fontSize={10} fontFamily="Outfit, sans-serif" fontWeight={700}>
         {artist}
       </text>
     </g>
@@ -116,7 +116,7 @@ function BarValueLabel(props) {
           y={y + height / 2}
           dy={4}
           fontSize={13}
-          fontFamily="Inter"
+          fontFamily="Outfit, sans-serif"
         >
           {medal}
         </text>
@@ -125,10 +125,10 @@ function BarValueLabel(props) {
         x={x + width + (medal ? 24 : 6)}
         y={y + height / 2}
         dy={4}
-        fill="#a0a0b8"
-        fontSize={11}
-        fontWeight={600}
-        fontFamily="Inter"
+        fill="#121212"
+        fontSize={12}
+        fontWeight={900}
+        fontFamily="Outfit, sans-serif"
       >
         {value}
       </text>
@@ -249,7 +249,7 @@ export default function TopSongsChart({ t, activeGenres, selectedDecade }) {
                   value: axisLabel,
                   position: "insideBottom",
                   offset: -2,
-                  style: { fill: "#6b6b82", fontSize: 12, fontFamily: "Inter" },
+                  style: { fill: "#121212", fontSize: 12, fontFamily: "Outfit, sans-serif", fontWeight: 700 },
                 }}
               />
               <YAxis
@@ -261,7 +261,7 @@ export default function TopSongsChart({ t, activeGenres, selectedDecade }) {
               />
               <Tooltip
                 content={<SongTooltip t={t} />}
-                cursor={{ fill: "rgba(255,255,255,0.03)" }}
+                cursor={{ fill: "rgba(0,0,0,0.03)" }}
               />
               <Bar
                 dataKey={dataKey}
