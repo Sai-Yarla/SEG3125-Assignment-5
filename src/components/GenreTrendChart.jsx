@@ -56,25 +56,6 @@ function renderLegend(props, t) {
   );
 }
 
-/* ── Custom dot label for "Show Values" ── */
-function ValueDot(props) {
-  const { cx, cy, value } = props;
-  if (value === undefined || value === null) return null;
-  return (
-    <text
-      x={cx}
-      y={cy - 10}
-      textAnchor="middle"
-      fill="#121212"
-      fontSize={9}
-      fontFamily="Outfit, sans-serif"
-      fontWeight={900}
-    >
-      {value}%
-    </text>
-  );
-}
-
 /* ── Annotation data ── */
 const ANNOTATIONS = [
   { decade: "1990s", labelKey: "annotationHipHop" },
@@ -84,7 +65,6 @@ const ANNOTATIONS = [
 /* ── Main Chart Component ── */
 export default function GenreTrendChart({ t, activeGenres }) {
   const [viewMode, setViewMode] = useState("line");
-  const [showValues, setShowValues] = useState(false);
 
   const chartData = musicData.map((d) => ({
     decade: d.decade,
@@ -116,14 +96,6 @@ export default function GenreTrendChart({ t, activeGenres }) {
               {t[mode === "line" ? "viewLine" : mode === "area" ? "viewArea" : "viewStacked"]}
             </button>
           ))}
-          <span className="chart-controls__divider" />
-          <button
-            className={`chart-control-btn ${showValues ? "chart-control-btn--active" : ""}`}
-            onClick={() => setShowValues((v) => !v)}
-            aria-pressed={showValues}
-          >
-            {t.showValues}
-          </button>
         </div>
       </div>
       <ResponsiveContainer width="100%" height={360}>
@@ -184,7 +156,7 @@ export default function GenreTrendChart({ t, activeGenres }) {
                 fillOpacity={isStacked ? 0.7 : 0.15}
                 strokeWidth={isStacked ? 1 : 2}
                 stackId={isStacked ? "genres" : undefined}
-                dot={showValues ? <ValueDot /> : { r: 3, strokeWidth: 2, fill: "#FFFFFF" }}
+                dot={{ r: 3, strokeWidth: 2, fill: "#FFFFFF" }}
                 activeDot={{ r: 5, strokeWidth: 0, fill: GENRE_COLORS[genre] }}
                 animationDuration={600}
               />
@@ -195,7 +167,7 @@ export default function GenreTrendChart({ t, activeGenres }) {
                 dataKey={genre}
                 stroke={GENRE_COLORS[genre]}
                 strokeWidth={2.5}
-                dot={showValues ? <ValueDot /> : { r: 4, strokeWidth: 2, fill: "#FFFFFF" }}
+                dot={{ r: 4, strokeWidth: 2, fill: "#FFFFFF" }}
                 activeDot={{ r: 6, strokeWidth: 0, fill: GENRE_COLORS[genre] }}
                 animationDuration={600}
               />
