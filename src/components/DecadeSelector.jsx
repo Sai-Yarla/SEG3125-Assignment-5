@@ -1,7 +1,7 @@
 import musicData from "../data/musicData";
 
 export default function DecadeSelector({ t, selectedDecade, onSelectDecade }) {
-  const decades = [{ value: "All", label: t.filterAllDecades }, ...musicData.map((d) => ({ value: d.decade, label: d.decade }))];
+  const decades = [{ value: "All", label: t.filterAllDecades }, ...musicData.map((d) => ({ value: d.decade, label: t.decadeLabels?.[d.decade] ?? d.decade }))];
 
   return (
     <div className="controls__group" role="group" aria-label={t.filterDecadeLabel}>

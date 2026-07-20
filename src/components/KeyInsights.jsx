@@ -57,15 +57,15 @@ export default function KeyInsights({ t, activeGenres, selectedDecade }) {
       });
 
       if (bestGrowthGenre && bestGrowth > 0) {
-        result.push({
+          result.push({
           id: "growth",
           icon: "📈",
           text: fillTemplate(t.insightGenreGrowth, {
             genre: t.genreLabels[bestGrowthGenre],
             from: first.genreShares[bestGrowthGenre] || 0,
             to: last.genreShares[bestGrowthGenre] || 0,
-            startDecade: first.decade,
-            endDecade: last.decade,
+            startDecade: t.decadeLabels?.[first.decade] ?? first.decade,
+            endDecade: t.decadeLabels?.[last.decade] ?? last.decade,
           }),
           accent: GENRE_COLORS[bestGrowthGenre],
         });

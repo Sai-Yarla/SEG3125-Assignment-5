@@ -1,0 +1,175 @@
+﻿ 
+SEG3125 Assignment 5 - Bilingual Interactive Dashboard 
+ 
+Name: Sai Yarlagadda 
+Student Number: 300283438 
+1. Dashboard Goal + Data 
+Goal & Domain: 
+The dashboard, titled "Mainstream Music Evolution," visualizes the cultural shifts in popular 
+music from the 1960s to the 2020s. It focuses on the music domain, specifically analyzing genre 
+market shares and top-performing songs on the Billboard Hot 100. 
+ 
+Dataset & Modifications: 
+The dataset draws from some real historical data but is ultimately synthetic, generated using AI 
+to model historical Billboard Hot 100 trends realistically. It tracks six major genres (Pop, Rock, 
+Hip-Hop, R&B, Country, Electronic) across seven decades. As per the assignment 
+requirements, a clear disclaimer is included in the dashboard footer stating that the data is 
+synthetic and for educational purposes. 
+ 
+Inspiration Dashboards: 
+The structural flow was inspired by the Whatagraph Shopify dashboard 
+(https://whatagraph.com/shopify-dashboard), which excels at presenting complex e-commerce 
+data in a clean, professional interface.  
+ 
+ 
+Visually, however, the dashboard draws heavy inspiration from 1920s Bauhaus posters (e.g., 
+works by Joost Schmidt and Herbert Bayer), translating their strict constructivist principles of 
+
+ 
+primary colours, thick borders, and geometric grid layouts into a functional data visualization 
+interface. 
+2. Reflection/Design 
+(A) Charts 
+I decided on two distinct chart types to represent the data from different analytical perspectives: 
+ΓùÅΓÇï Genre Trend Chart (Line / Area / Stacked Area): This chart visualizes the estimated 
+market share (%) of each genre over the decades. A time-series chart (line/area) was 
+chosen because it is the most effective way to show continuous change over time and 
+compare the relative trajectories of multiple categories (genres). 
+ΓùÅΓÇï Top Songs Chart (Horizontal Bar Chart): This chart displays the top songs ranked by 
+their peak weeks at #1 or total chart weeks. A horizontal bar chart was selected because 
+it allows for easy visual comparison of discrete items (songs) while accommodating long 
+song titles cleanly along the Y-axis without text rotation or overlap. 
+(B) 3Cs (Context, Clutter-Free, Contrast) 
+ΓùÅΓÇï Context: The dashboard immediately introduces its purpose with a clear title 
+("Mainstream Music Evolution") and a brief introductory paragraph explaining how to use 
+the interactive controls. Furthermore, each chart includes a descriptive subtitle 
+explaining exactly what the data represents. 
+ΓùÅΓÇï Clutter-Free: Embracing the Bauhaus ethos of "form follows function," the UI is stripped 
+of unnecessary ornamentation. I removed superfluous gridlines, gradients, and drop 
+shadows from the charts. The layout relies on generous negative space and stark 
+geometric divisions to separate sections logically, preventing cognitive overload. 
+ΓùÅΓÇï Contrast: The visual hierarchy is driven by extreme contrast. I used a strict palette of 
+stark primary colours (Red #D02020, Blue #1040C0, Yellow #F0C020) set against solid 
+black and white backgrounds. To ensure clarity across the 6 genres, each is assigned a 
+unique, distinct colour that remains easily distinguishable within the dashboard. This 
+approach not only fulfills the thematic aesthetic but also ensures excellent readability 
+and instantly draws the user's eye to key data points, active filters, and interactive 
+elements. 
+(C) Layout, Title, and Interactions 
+ΓùÅΓÇï Layout & Title: The dashboard is a single-page application titled "Mainstream Music 
+Evolution." It features a top-down flow: Header & Intro -> Global Filters & Stats -> 
+Charts. 
+ΓùÅΓÇï Interactions: The user has extensive control over the data being displayed: 
+
+ 
+ΓùïΓÇï Decade Selector: Users can filter the entire dashboard to view a specific decade 
+(e.g., 1980s) or view all historical data simultaneously. 
+ΓùïΓÇï Genre Filtering: Users can toggle specific genres on and off to isolate trends 
+(e.g., comparing just Rock vs. Hip-Hop). 
+ΓùïΓÇï Chart Toggles: The Trend chart allows users to swap between Line, Area, and 
+Stacked views. The Bar chart allows sorting by "Weeks at #1," "Chart Weeks," 
+"Chronologically," or alphabetically. 
+(D) Internationalization 
+ΓùÅΓÇï Languages Chosen: English (Default) and French. 
+ΓùÅΓÇï Translation Source: The translations were obtained mostly using Google Translate and 
+GenAI to ensure contextually accurate phrasing for UI elements. 
+ΓùÅΓÇï Translation Difficulties: Direct translation often resulted in text expansion. For 
+example, "Chart Weeks" translates to "Semaines au Classement," which was 
+significantly longer. I had to ensure the CSS flexbox layouts and chart margins were 
+responsive enough so that the longer French strings did not break the UI or overlap with 
+other elements. 
+ΓùÅΓÇï Localization Process: I implemented a centralized dictionary (translations.js) and 
+localized all textual elements. This includes the global headers, introductory text, axis 
+labels, chart tooltips, legends, interactive button labels, dynamic insight sentences, and 
+footer disclaimers. 
+ΓùÅΓÇï Beyond Text: Localizing Non-Textual Elements: Beyond UI strings, I localized 
+non-textual elements to address identified gaps. I used Intl.NumberFormat for 
+region-specific number conventions (e.g., decimal separators) and rendered years as 
+plain strings to prevent incorrect grouping separators (e.g., "2024" instead of "2 024"). 
+Decade labels were mapped to French equivalents (e.g., "Ann├⌐es 60"), and the <html 
+lang> attribute updates dynamically on language switches to ensure proper accessibility. 
+3. High-Fidelity Prototype 
+(A) Visual Design Choices 
+The visual design of the "Mainstream Music Evolution" dashboard was meticulously crafted to 
+reflect the bold, geometric spirit of the 1920s Bauhaus movement, while ensuring the complex 
+musical data remained accessible and clean. 
+ΓùÅΓÇï Colour Theme and Consistency: I established a strict Bauhaus-inspired palette using 
+primary colours: "Red" (#D02020), "Blue" (#1040C0), and "Yellow" (#F0C020), set 
+against solid black and white backgrounds. To ensure the six musical genres (Pop, 
+Rock, Hip-Hop, R&B, Country, Electronic) remain easily distinguishable, each genre is 
+
+ 
+assigned a unique, vibrant colour that stands out clearly against the primary interface 
+colours, ensuring the user can instantly identify data series despite the surrounding 
+primary colour scheme. 
+ΓùÅΓÇï Typography: I employed a bold, sans-serif typeface to align with the Bauhaus 
+commitment to functional, geometric clarity. This choice prioritizes legibility for chart 
+labels, axes, and interactive elements, ensuring the technical data is never obscured by 
+decorative fonts. 
+ΓùÅΓÇï Layout and Negative Space: The interface leverages the "less is more" principle, 
+utilizing generous negative space to prevent the complex historical data from 
+overwhelming the user. The layout follows a rigid constructivist grid, separating the intro, 
+global filters, and individual charts into clear, geometric zones that provide a logical, 
+top-down narrative flow. 
+ΓùÅΓÇï Contrast, Scale, Balance, and Visual Hierarchy:  
+ΓùïΓÇï Contrast: Critical interactive elements and headers utilize the high-contrast Red 
+and Blue primary tones, ensuring they pop against the white dashboard 
+background. 
+ΓùïΓÇï Scale and Hierarchy: The dashboard employs a clear hierarchy: the main title is 
+the largest element, followed by descriptive chart subtitles, and finally, the precise 
+data labels within the charts. 
+ΓùïΓÇï Balance: Asymmetrical balance is used to separate the fixed global controls on 
+the left from the dynamic data visualization areas on the right, maintaining a 
+sense of order despite the high volume of information. 
+ΓùÅΓÇï Gestalt Principles for Perception:  
+ΓùïΓÇï Similarity: All genre-related buttons and filter toggles share consistent hover 
+states and colors, reinforcing their interactive nature. 
+ΓùïΓÇï Proximity & Enclosure: Charts are contained within clearly defined boundaries 
+with consistent margins, grouping titles, legends, and the data visualization itself 
+as a single cognitive unit. 
+ΓùïΓÇï Continuity: The layout guides the eye naturally through a logical sequence: 
+moving from the explanatory intro to global filters, and finally down to the 
+interactive charts. 
+ΓùÅΓÇï Synergy between Visual and Verbal Communication: The visual aesthetic of the 
+Bauhaus movement serves as a bridge to the historical nature of the data. The stark, 
+constructivist design mimics the radical shifts in musical trends it analyzes, while the 
+clean, rational presentation mirrors the analytical intent of the report, ensuring that the 
+interface feels both historically significant and modernly usable. 
+
+ 
+(B) Usability Heuristics 
+To ensure the dashboard is not just visually striking but also highly functional, I incorporated 
+several of Nielsen's 10 Usability Heuristics: 
+ΓùÅΓÇï Visibility of System Status: Active filters (e.g., the currently selected decade or active 
+genres) and the current language are clearly highlighted, so users always know exactly 
+what subset of data they are viewing. 
+ΓùÅΓÇï User Control and Freedom: Users are never locked into a view. They can easily toggle 
+individual genres on and off or use a "Reset All" function to quickly return the dashboard 
+to its default state. 
+ΓùÅΓÇï Consistency and Standards: The colour mapping for genres (e.g., Pop is always Red, 
+Hip-Hop is always Yellow) is strictly maintained across all charts, filters, and tooltips. 
+This internal consistency prevents cognitive friction as the user scans different parts of 
+the dashboard. 
+ 
+4. Code 
+Portfolio Links: 
+Live UI (GitHub Pages): https://sai-yarla.github.io/SEG3125-Assignment-1/  
+Source Code (GitHub Repository): https://github.com/Sai-Yarla/SEG3125-Assignment-1  
+Dashboard Site Direct Links: 
+Live UI (GitHub Pages): https://sai-yarla.github.io/SEG3125-Assignment-5/  
+Source Code (GitHub Repository): https://github.com/Sai-Yarla/SEG3125-Assignment-5 
+5. Generative AI Acknowledgement 
+Generative AI played a supportive role in the development of the Mainstream Music Evolution 
+dashboard. AI tools were utilized to generate the synthetic dataset, providing a realistic 
+foundation for the historical Billboard Hot 100 trends. These data points were then manually 
+integrated into the Bauhaus-inspired design system, which I defined through custom typography, 
+grid structures, and a primary colour palette to meet the project's visual objectives. 
+ 
+During the development of the React prototype, GitHub Copilot served as a coding assistant. I 
+leveraged it primarily for scaffolding boilerplate React components, such as initial Recharts 
+configurations, and for troubleshooting complex CSS grid layouts to ensure responsive 
+functionality across screen sizes. Finally, Gemini assisted in structuring this report, ensuring that 
+the content was logically organized and clearly presented in accordance with the assignment 
+requirements. 
+ 
+

@@ -55,7 +55,7 @@ function SongTooltip({ active, payload, t }) {
       </div>
       <div className="custom-tooltip__row">
         <span className="custom-tooltip__label">{t.tooltipYear}</span>
-        <span className="custom-tooltip__value">{data.year}</span>
+        <span className="custom-tooltip__value">{String(data.year)}</span>
       </div>
       <div className="custom-tooltip__row">
         <span className="custom-tooltip__label">{t.tooltipGenre}</span>

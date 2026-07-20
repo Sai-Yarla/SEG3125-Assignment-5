@@ -6,7 +6,7 @@ const translations = {
     // Header
     dashboardTitle: "Mainstream Music Evolution",
     dashboardSubtitle: "Billboard Hot 100 · Genre Trends · 1960s – 2020s",
-    designerCredit: "",
+    designerCredit: "Sai Yarlagadda — 300283438",
 
     // Intro
     introText:
@@ -36,6 +36,17 @@ const translations = {
       RB: "R&B",
       Country: "Country",
       Electronic: "Electronic",
+    },
+
+    // Decade Labels (localized)
+    decadeLabels: {
+      "1960s": "1960s",
+      "1970s": "1970s",
+      "1980s": "1980s",
+      "1990s": "1990s",
+      "2000s": "2000s",
+      "2010s": "2010s",
+      "2020s": "2020s",
     },
 
     // Filters
@@ -106,7 +117,7 @@ const translations = {
     // Footer
     footerDataSource: "Data Source: Synthetic dataset based on Billboard Hot 100 historical trends.",
     footerDisclaimer: "Note: All data presented is synthetic and for educational purposes only.",
-    footerDesigner: "",
+    footerDesigner: "Designed by Sai Yarlagadda — 300283438",
   },
 
   fr: {
@@ -115,7 +126,7 @@ const translations = {
     // Header
     dashboardTitle: "L'Évolution de la Musique Populaire",
     dashboardSubtitle: "Billboard Hot 100 · Tendances des Genres · 1960 – 2020",
-    designerCredit: "",
+    designerCredit: "Sai Yarlagadda — 300283438",
 
     // Intro
     introText:
@@ -145,6 +156,17 @@ const translations = {
       RB: "R&B",
       Country: "Country",
       Electronic: "Électronique",
+    },
+
+    // Decade Labels (localized)
+    decadeLabels: {
+      "1960s": "Années 60",
+      "1970s": "Années 70",
+      "1980s": "Années 80",
+      "1990s": "Années 90",
+      "2000s": "Années 2000",
+      "2010s": "Années 2010",
+      "2020s": "Années 2020",
     },
 
     // Filters
@@ -215,7 +237,7 @@ const translations = {
     // Footer
     footerDataSource: "Source des Données : Jeu de données synthétique basé sur les tendances historiques du Billboard Hot 100.",
     footerDisclaimer: "Remarque : Toutes les données présentées sont synthétiques et à des fins éducatives uniquement.",
-    footerDesigner: "",
+    footerDesigner: "Conçu par Sai Yarlagadda — 300283438",
   },
 };
 

@@ -10,7 +10,7 @@ export default function FilterSummary({ t, activeGenres, selectedDecade, onReset
 
   const genreText = allSelected ? t.filterSummaryAllGenres : genreNames;
   const decadeText =
-    selectedDecade === "All" ? t.filterSummaryAllDecades : selectedDecade;
+    selectedDecade === "All" ? t.filterSummaryAllDecades : (t.decadeLabels?.[selectedDecade] ?? selectedDecade);
 
   return (
     <div className="filter-summary" role="status" aria-live="polite">

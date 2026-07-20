@@ -66,9 +66,17 @@ const ANNOTATIONS = [
 export default function GenreTrendChart({ t, activeGenres }) {
   const [viewMode, setViewMode] = useState("line");
 
+  // Map decade labels through the translation dictionary for localized axis
   const chartData = musicData.map((d) => ({
-    decade: d.decade,
+    decade: t.decadeLabels?.[d.decade] ?? d.decade,
+    _rawDecade: d.decade,
     ...d.genreShares,
+  }));
+
+  // Map annotation decades to localized labels so ReferenceLine x values match
+  const localizedAnnotations = ANNOTATIONS.map((ann) => ({
+    ...ann,
+    decade: t.decadeLabels?.[ann.decade] ?? ann.decade,
   }));
 
   const activeKeys = GENRE_KEYS.filter((g) => activeGenres.has(g));
@@ -126,7 +134,7 @@ export default function GenreTrendChart({ t, activeGenres }) {
           <Legend content={(props) => renderLegend(props, t)} />
 
           {/* Reference line annotations */}
-          {ANNOTATIONS.map((ann) => (
+          {localizedAnnotations.map((ann) => (
             <ReferenceLine
               key={ann.decade}
               x={ann.decade}
@@ -137,7 +145,7 @@ export default function GenreTrendChart({ t, activeGenres }) {
                 value={t[ann.labelKey]}
                 position="top"
                 fill="#121212"
-                fontSize={10}
+                fontSize={11}
                 fontFamily="Outfit, sans-serif"
                 fontWeight={900}
                 offset={8}
@@ -178,3 +186,4 @@ export default function GenreTrendChart({ t, activeGenres }) {
     </div>
   );
 }
+
